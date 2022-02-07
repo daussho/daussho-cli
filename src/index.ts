@@ -21,8 +21,8 @@ function main() {
 
   switch (app) {
     case "slugify":
-      const str = parseSentence(_argv._);
-      slugifier(str);
+      // const str = parseSentence(_argv._);
+      slugifier(_argv._[1].toString());
   }
 }
 
