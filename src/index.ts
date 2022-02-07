@@ -5,25 +5,26 @@ import { slugifier } from "./app/slugifier";
 import { parseSentence, showHelp } from "./utils";
 
 function main() {
-  const _argv = yargs(process.argv.slice(2))
+  const args = yargs(process.argv.slice(2))
     .options({
       //   a: { type: "boolean", default: false },
     })
     .parseSync();
 
-  if (_argv._[0] == null) {
+  const [cmd, param] = args._;
+
+  if (cmd === null) {
     showHelp();
     return;
   }
 
-  const app = _argv._[0];
-  console.log({ app });
+  console.log({ cmd });
 
-  switch (app) {
+  switch (cmd) {
     case "slugify":
-      const str = _argv._[1].toString().split(/\r?\n/);
+      const stringList = param.toString().split(/\r?\n/);
 
-      slugifier(str);
+      slugifier(stringList);
   }
 }
 
