@@ -4,6 +4,7 @@
   "description": "",
   "main": "bin/index.js",
   "scripts": {
+    "dev": "tsc --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
@@ -13,5 +14,14 @@
     "cli"
   ],
   "author": "Abdul Hafizh Firdaus",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "slugify": "^1.6.5",
+    "yargs": "^17.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.15",
+    "@types/yargs": "^17.0.8",
+    "typescript": "^4.5.5"
+  }
 }
