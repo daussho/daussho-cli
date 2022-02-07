@@ -1,8 +1,9 @@
 #! /usr/bin/env node
 
 import yargs from "yargs/yargs";
+import { katla } from "./app/katla";
 import { slugifier } from "./app/slugifier";
-import { parseSentence, showHelp } from "./utils";
+import { showHelp } from "./utils";
 
 function main() {
   const args = yargs(process.argv.slice(2))
@@ -11,7 +12,7 @@ function main() {
     })
     .parseSync();
 
-  const [cmd, param] = args._;
+  const [cmd, ...params] = args._;
 
   if (cmd === null) {
     showHelp();
@@ -20,11 +21,19 @@ function main() {
 
   console.log({ cmd });
 
-  switch (cmd) {
+  switch (cmd.toString()) {
     case "slugify":
-      const stringList = param.toString().split(/\r?\n/);
+      const stringList = params[0].toString().split(/\r?\n/);
 
       slugifier(stringList);
+      break;
+    case "katla":
+      const { includes, excludes } = args;
+      const _includes = (includes as string).split(",");
+      const _excludes = (excludes as string).split(",");
+
+      katla(_includes, _excludes);
+      break;
   }
 }
 
