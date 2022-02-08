@@ -10,15 +10,22 @@ function loadWords() {
 export function katla(includes: string[], excludes: string[]) {
   const wordArr = loadWords();
 
-  // const includes: string[] = ["rah"];
-  // const excludes: string[] = ["k", "u", "s", "d"];
+  const guess = wordArr.filter((w) => {
+    let res = true;
 
-  const guess = wordArr.filter(
-    (w) =>
-      includes.some((v) => w.includes(v)) &&
-      !excludes.some((v) => w.includes(v))
-  );
+    if (includes.length > 0) {
+      res = res && includes.every((v) => w.includes(v));
+    }
 
-  console.log({ wordArr });
-  console.log(guess);
+    if (excludes.length > 0) {
+      res = res && !excludes.some((v) => w.includes(v));
+    }
+
+    return res;
+  });
+
+  console.log({
+    guess,
+    total: guess.length,
+  });
 }

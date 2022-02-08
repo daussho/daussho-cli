@@ -28,9 +28,17 @@ function main() {
       slugifier(stringList);
       break;
     case "katla":
-      const { includes, excludes } = args;
-      const _includes = (includes as string).split(",");
-      const _excludes = (excludes as string).split(",");
+      let { includes, excludes } = args;
+
+      let _includes: string[] = [];
+      if ((includes as string).length > 0) {
+        _includes = (includes as string).split(",");
+      }
+
+      let _excludes: string[] = [];
+      if ((excludes as string).length > 0) {
+        _excludes = (excludes as string).split(",");
+      }
 
       katla(_includes, _excludes);
       break;
