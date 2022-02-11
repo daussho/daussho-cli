@@ -1,9 +1,7 @@
-import { readFileSync } from "fs";
+import { wordList } from "../data/word";
 
 function loadWords() {
-  const word = JSON.parse(readFileSync("./data/word.json", "utf8")) as string[];
-
-  const wordArr = word.filter((t) => t.length === 5);
+  const wordArr = wordList.filter((t) => t.length === 5);
   return wordArr;
 }
 
