@@ -4,6 +4,7 @@ import yargs from "yargs/yargs";
 import { katla } from "./app/katla";
 import { slugifier } from "./app/slugifier";
 import { showHelp } from "./utils";
+import isEmpty from "lodash/isEmpty";
 
 function main() {
   const args = yargs(process.argv.slice(2))
@@ -14,7 +15,7 @@ function main() {
 
   const [cmd, ...params] = args._;
 
-  if (cmd === null) {
+  if (isEmpty(cmd)) {
     showHelp();
     return;
   }
